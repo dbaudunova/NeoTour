@@ -14,28 +14,33 @@ class AppStyles {
     fontSize: 16,
     fontWeight: FontWeight.w400,
     fontFamily: 'SfProDisplay',
-    height: 2,
   );
 
   static TextStyle s16w500 = const TextStyle(
     color: Colors.white,
     fontSize: 16,
     fontWeight: FontWeight.w500,
-    fontFamily: 'SfProDisplay',
-    height: 2,
+    fontFamily: 'SfProDisplayBold',
   );
 
   static TextStyle s16w700 = TextStyle(
     color: AppColors.primaryColor,
     fontSize: 16,
-    fontFamily: 'SfProDisplay',
-    height: 2,
+    fontFamily: 'SfProDisplayBold',
+    fontWeight: FontWeight.w700,
   );
 
   static TextStyle s16w600 = const TextStyle(
     color: Colors.white,
     fontSize: 16,
+    fontWeight:  FontWeight.w600,
     fontFamily: 'SfProDisplay',
-    height: 2,
+  );
+
+  static TextStyle s20w600 = const TextStyle(
+    color: Colors.white,
+    fontSize: 16,
+    fontWeight: FontWeight.w600,
+    fontFamily: 'SfProDisplayBold',
   );
 }
