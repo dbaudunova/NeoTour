@@ -63,6 +63,7 @@ flutter:
   assets:
     - assets/onboarding.jpg
     - assets/mountain.jpg
+    - assets/fuji.jpg
     - assets/arrow_next.svg
 
   # An image asset can refer to one or more resolution-specific "variants", see

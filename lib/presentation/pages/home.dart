@@ -3,6 +3,7 @@ import 'package:neo_tour/config/constants/app_assets.dart';
 import 'package:neo_tour/config/constants/app_colors.dart';
 import 'package:neo_tour/config/constants/app_styles.dart';
 import 'package:neo_tour/data/model/place.dart';
+import 'package:neo_tour/presentation/pages/description.dart';
 import 'package:neo_tour/presentation/widgets/category_card.dart';
 import 'package:neo_tour/presentation/widgets/circle_tab_indicator.dart';
 
@@ -97,6 +98,9 @@ class Home extends StatelessWidget {
       radius: 19,
       contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
       textSize: 20,
+      onTap: () {
+        _descriptionNavigate(context);
+      },
     );
   }
 
@@ -106,6 +110,18 @@ class Home extends StatelessWidget {
       radius: 10,
       contentPadding: const EdgeInsets.symmetric(vertical: 12, horizontal: 12),
       textSize: 14,
+      onTap: () {
+        _descriptionNavigate(context);
+      },
+    );
+  }
+
+  void _descriptionNavigate(context) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const Description(),
+      ),
     );
   }
 

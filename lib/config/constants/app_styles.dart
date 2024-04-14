@@ -39,8 +39,16 @@ class AppStyles {
 
   static TextStyle s20w600 = const TextStyle(
     color: Colors.white,
-    fontSize: 16,
+    fontSize: 20,
     fontWeight: FontWeight.w600,
     fontFamily: 'SfProDisplayBold',
   );
+
+  static TextStyle s24w900 = const TextStyle(
+    color: Colors.black,
+    fontSize: 24,
+    fontWeight: FontWeight.w900,
+    fontFamily: 'SfProDisplayBold',
+  );
+
 }
