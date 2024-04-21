@@ -68,7 +68,6 @@ flutter:
   assets:
     - assets/onboarding.jpg
     - assets/mountain.jpg
-    - assets/fuji.jpg
     - assets/avatar.png
     - assets/arrow_next.svg
     - assets/location.svg

@@ -8,7 +8,7 @@ class ReviewItem extends StatelessWidget {
     required this.review,
   });
 
-  final Review review;
+  final ReviewEntity review;
 
   @override
   Widget build(BuildContext context) {

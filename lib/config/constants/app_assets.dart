@@ -1,7 +1,6 @@
 class AppAssets {
   static const String onboarding = 'assets/onboarding.jpg';
   static const String mountain = 'assets/mountain.jpg';
-  static const String fuji = 'assets/fuji.jpg';
   static const String avatar = 'assets/avatar.png';
   static const String arrowNext = 'assets/arrow_next.svg';
   static const String location = 'assets/location.svg';

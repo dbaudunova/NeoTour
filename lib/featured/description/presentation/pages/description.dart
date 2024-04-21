@@ -11,42 +11,42 @@ class Description extends StatelessWidget {
   Description({super.key});
 
   final _reviews = [
-    Review(
+    ReviewEntity(
       id: 0,
       avatar: AppAssets.avatar,
       name: 'Anonymous',
       review:
           'That was such a nice place. The most beautiful place I’ve ever seen. My advice to everyone not to forget to take warm coat',
     ),
-    Review(
+    ReviewEntity(
       id: 1,
       avatar: AppAssets.avatar,
       name: 'Anonymous',
       review:
           'That was such a nice place. The most beautiful place I’ve ever seen. My advice to everyone not to forget to take warm coat',
     ),
-    Review(
+    ReviewEntity(
       id: 2,
       avatar: AppAssets.avatar,
       name: 'Anonymous',
       review:
           'That was such a nice place. The most beautiful place I’ve ever seen. My advice to everyone not to forget to take warm coat',
     ),
-    Review(
+    ReviewEntity(
       id: 3,
       avatar: AppAssets.avatar,
       name: 'Anonymous',
       review:
           'That was such a nice place. The most beautiful place I’ve ever seen. My advice to everyone not to forget to take warm coat',
     ),
-    Review(
+    ReviewEntity(
       id: 4,
       avatar: AppAssets.avatar,
       name: 'Anonymous',
       review:
           'That was such a nice place. The most beautiful place I’ve ever seen. My advice to everyone not to forget to take warm coat',
     ),
-    Review(
+    ReviewEntity(
       id: 5,
       avatar: AppAssets.avatar,
       name: 'Anonymous',
