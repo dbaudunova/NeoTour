@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:neo_tour/config/constants/app_styles.dart';
-import 'package:neo_tour/data/model/place.dart';
+import 'package:neo_tour/featured/home/domain/model/place.dart';
 
 class CategoryCardItem extends StatelessWidget {
   const CategoryCardItem({

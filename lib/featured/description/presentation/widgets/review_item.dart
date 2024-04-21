@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:neo_tour/config/constants/app_styles.dart';
-import 'package:neo_tour/data/model/review.dart';
+import 'package:neo_tour/featured/description/domain/model/review.dart';
 
 class ReviewItem extends StatelessWidget {
   const ReviewItem({

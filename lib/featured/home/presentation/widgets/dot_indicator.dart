@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:neo_tour/config/constants/app_colors.dart';
-import 'package:neo_tour/data/model/place.dart';
+import 'package:neo_tour/featured/home/domain/model/place.dart';
 import 'package:page_view_dot_indicator/page_view_dot_indicator.dart';
 
 class DotIndicator extends StatelessWidget {

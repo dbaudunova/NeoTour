@@ -3,10 +3,10 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:neo_tour/config/constants/app_assets.dart';
 import 'package:neo_tour/config/constants/app_colors.dart';
 import 'package:neo_tour/config/constants/app_styles.dart';
-import 'package:neo_tour/presentation/widgets/alert_dialog.dart';
-import 'package:neo_tour/presentation/widgets/counter_style.dart';
-import 'package:neo_tour/presentation/widgets/elevated_button_style.dart';
-import 'package:neo_tour/presentation/widgets/text_field_style.dart';
+import 'package:neo_tour/featured/info/presentation/widgets/alert_dialog.dart';
+import 'package:neo_tour/featured/info/presentation/widgets/counter_style.dart';
+import 'package:neo_tour/featured/info/presentation/widgets/elevated_button_style.dart';
+import 'package:neo_tour/featured/info/presentation/widgets/text_field_style.dart';
 
 class InfoBottomSheet extends StatefulWidget {
   const InfoBottomSheet({super.key});

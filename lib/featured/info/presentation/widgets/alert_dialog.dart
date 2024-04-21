@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:neo_tour/config/constants/app_styles.dart';
-import 'package:neo_tour/presentation/widgets/elevated_button_style.dart';
+import 'package:neo_tour/featured/info/presentation/widgets/elevated_button_style.dart';
 
 class AlertDialogStyle extends StatelessWidget {
   const AlertDialogStyle({

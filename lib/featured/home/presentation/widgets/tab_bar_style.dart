@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:neo_tour/config/constants/app_colors.dart';
 import 'package:neo_tour/config/constants/app_styles.dart';
-import 'package:neo_tour/presentation/widgets/circle_tab_indicator.dart';
+import 'package:neo_tour/featured/home/presentation/widgets/circle_tab_indicator.dart';
 
 class TabBarStyle extends StatelessWidget {
   const TabBarStyle({

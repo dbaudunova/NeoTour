@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:neo_tour/config/constants/app_assets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:neo_tour/config/constants/app_styles.dart';
-import 'package:neo_tour/presentation/pages/home.dart';
+import 'package:neo_tour/featured/home/presentation/pages/home.dart';
 
 class Onboarding extends StatelessWidget {
   const Onboarding({super.key});

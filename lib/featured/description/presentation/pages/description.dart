@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:neo_tour/config/constants/app_assets.dart';
 import 'package:neo_tour/config/constants/app_styles.dart';
-import 'package:neo_tour/data/model/review.dart';
-import 'package:neo_tour/presentation/pages/info_bottom_sheet.dart';
-import 'package:neo_tour/presentation/widgets/back_style.dart';
-import 'package:neo_tour/presentation/widgets/elevated_button_style.dart';
-import 'package:neo_tour/presentation/widgets/review_item.dart';
+import 'package:neo_tour/featured/description/domain/model/review.dart';
+import 'package:neo_tour/featured/info/presentation/pages/info_bottom_sheet.dart';
+import 'package:neo_tour/featured/description/presentation/widgets/back_style.dart';
+import 'package:neo_tour/featured/info/presentation/widgets/elevated_button_style.dart';
+import 'package:neo_tour/featured/description/presentation/widgets/review_item.dart';
 
 class Description extends StatelessWidget {
   Description({super.key});
