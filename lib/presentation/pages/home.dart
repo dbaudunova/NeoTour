@@ -1,15 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:neo_tour/config/constants/app_assets.dart';
-import 'package:neo_tour/config/constants/app_colors.dart';
 import 'package:neo_tour/config/constants/app_styles.dart';
 import 'package:neo_tour/data/model/place.dart';
 import 'package:neo_tour/presentation/pages/description.dart';
 import 'package:neo_tour/presentation/widgets/category_card.dart';
-import 'package:neo_tour/presentation/widgets/circle_tab_indicator.dart';
+import 'package:neo_tour/presentation/widgets/dot_indicator.dart';
+import 'package:neo_tour/presentation/widgets/tab_bar_style.dart';
 
-class Home extends StatelessWidget {
-  Home({super.key});
+class Home extends StatefulWidget {
+  const Home({super.key});
 
+  @override
+  State<Home> createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
+  final ScrollController _scrollController = ScrollController();
+  int _currentItem = 0;
   final List<Tab> _tabs = [
     'Popular',
     'Featured',
@@ -28,71 +35,105 @@ class Home extends StatelessWidget {
   ];
 
   @override
+  void initState() {
+    super.initState();
+    _scrollController.addListener(_onScroll);
+  }
+
+  @override
+  void dispose() {
+    _scrollController.removeListener(_onScroll);
+    _scrollController.dispose();
+    super.dispose();
+  }
+
+  void _onScroll() {
+    const double itemExtent = 254;
+    final double offset = _scrollController.offset;
+    final int currentItem = (offset / itemExtent).floor();
+
+    if (currentItem >= 0 && currentItem < _places.length) {
+      setState(() {
+        _currentItem = currentItem;
+      });
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: _buildAppBar(),
       body: SafeArea(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(left: 16, top: 48),
-              child: Text(
-                'Discover',
-                style: AppStyles.s36w900.copyWith(
-                  fontSize: 32,
+        child: SingleChildScrollView(
+          child: DefaultTabController(
+            length: _tabs.length,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(left: 10),
+                  child: TabBarStyle(tabs: _tabs),
                 ),
-              ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 24, left: 16),
+                  child: SizedBox(
+                    height: 254,
+                    child: ListView.builder(
+                      itemCount: _places.length,
+                      padding: const EdgeInsets.only(right: 16),
+                      scrollDirection: Axis.horizontal,
+                      itemBuilder: _categoryCardItemBuilder,
+                      controller: _scrollController,
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 16),
+                DotIndicator(currentItem: _currentItem, places: _places),
+                Padding(
+                  padding: const EdgeInsets.only(top: 32, left: 16),
+                  child: Text(
+                    'Recommended',
+                    style: AppStyles.s20w600.copyWith(
+                      color: Colors.black,
+                      fontWeight: FontWeight.w900,
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 18, left: 16, right: 16),
+                  child: GridView.builder(
+                    shrinkWrap: true,
+                    itemCount: _places.length,
+                    itemBuilder: _recommendedItemBuilder,
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 2),
+                  ),
+                )
+              ],
             ),
-            Padding(
-              padding: const EdgeInsets.only(left: 10),
-              child: DefaultTabController(
-                length: _tabs.length,
-                child: Column(
-                  children: [
-                    _buildTabBar(),
-                  ],
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(top: 24, left: 16),
-              child: SizedBox(
-                height: 254,
-                child: ListView.builder(
-                  itemCount: _places.length,
-                  scrollDirection: Axis.horizontal,
-                  itemBuilder: _categoryCardItemBuilder,
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(top: 32, left: 16),
-              child: Text(
-                'Recommended',
-                style: AppStyles.s20w600.copyWith(
-                  color: Colors.black,
-                  fontWeight: FontWeight.w900,
-                ),
-              ),
-            ),
-            Expanded(
-              child: Padding(
-                padding: const EdgeInsets.only(top: 18, left: 16, right: 16),
-                child: GridView.builder(
-                  itemCount: _places.length,
-                  itemBuilder: _recommendedItemBuilder,
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2),
-                ),
-              ),
-            )
-          ],
+          ),
         ),
       ),
     );
   }
 
-  Widget? _categoryCardItemBuilder(context, index) {
+  AppBar _buildAppBar() {
+    return AppBar(
+      title: Text(
+        'Discover',
+        style: AppStyles.s36w900.copyWith(
+          fontSize: 32,
+        ),
+      ),
+      centerTitle: false,
+      automaticallyImplyLeading: false,
+      surfaceTintColor: Colors.transparent,
+    );
+  }
+
+  Widget _categoryCardItemBuilder(BuildContext context, int index) {
     return CategoryCardItem(
       place: _places.elementAt(index),
       radius: 19,
@@ -104,7 +145,7 @@ class Home extends StatelessWidget {
     );
   }
 
-  Widget? _recommendedItemBuilder(context, index) {
+  Widget? _recommendedItemBuilder(BuildContext context, int index) {
     return CategoryCardItem(
       place: _places.elementAt(index),
       radius: 10,
@@ -116,29 +157,12 @@ class Home extends StatelessWidget {
     );
   }
 
-  void _descriptionNavigate(context) {
+  void _descriptionNavigate(BuildContext context) {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => const Description(),
+        builder: (context) => Description(),
       ),
-    );
-  }
-
-  TabBar _buildTabBar() {
-    return TabBar(
-      tabAlignment: TabAlignment.start,
-      indicatorSize: TabBarIndicatorSize.tab,
-      overlayColor: MaterialStateProperty.all(Colors.transparent),
-      isScrollable: true,
-      dividerColor: Colors.transparent,
-      unselectedLabelStyle: AppStyles.s16w400,
-      labelStyle: AppStyles.s16w700,
-      indicator: CircleTabIndicator(
-        color: AppColors.primaryColor,
-        radius: 4,
-      ),
-      tabs: _tabs,
     );
   }
 }

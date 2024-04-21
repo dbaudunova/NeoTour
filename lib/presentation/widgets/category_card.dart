@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:neo_tour/config/constants/app_styles.dart';
 import 'package:neo_tour/data/model/place.dart';
-import 'package:neo_tour/presentation/pages/description.dart';
 
 class CategoryCardItem extends StatelessWidget {
   const CategoryCardItem({
@@ -22,14 +21,7 @@ class CategoryCardItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: onTap/*() {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => const Description(),
-          ),
-        );
-      }*/,
+      onTap: onTap,
       child: Card(
         elevation: 0,
         child: Container(

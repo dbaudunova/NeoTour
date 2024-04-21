@@ -51,4 +51,24 @@ class AppStyles {
     fontFamily: 'SfProDisplayBold',
   );
 
+  static TextStyle s12w400 = const TextStyle(
+    color: Colors.black,
+    fontSize: 12,
+    fontWeight: FontWeight.w400,
+    fontFamily: 'SfProDisplayBold',
+  );
+
+  static TextStyle s18w400 = const TextStyle(
+    color: Colors.white,
+    fontSize: 18,
+    fontWeight: FontWeight.w400,
+    fontFamily: 'SfProDisplay',
+  );
+
+  static TextStyle s14w400 = const TextStyle(
+    color: Colors.black,
+    fontSize: 14,
+    fontWeight: FontWeight.w400,
+    fontFamily: 'SfProDisplay',
+  );
 }

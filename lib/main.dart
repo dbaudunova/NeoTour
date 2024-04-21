@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:neo_tour/config/theme/app_theme.dart';
 import 'package:neo_tour/presentation/pages/onboarding.dart';
 
 void main() => runApp(
-      const MaterialApp(
+      MaterialApp(
+        theme: AppTheme.theme,
         debugShowCheckedModeBanner: false,
-        home: Onboarding(),
+        home: const Onboarding(),
       ),
     );

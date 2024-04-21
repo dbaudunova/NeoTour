@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:neo_tour/config/constants/app_assets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:neo_tour/config/constants/app_colors.dart';
 import 'package:neo_tour/config/constants/app_styles.dart';
 import 'package:neo_tour/presentation/pages/home.dart';
 
@@ -11,64 +10,47 @@ class Onboarding extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              ClipRRect(
-                borderRadius: const BorderRadius.only(
-                  bottomLeft: Radius.circular(37),
-                  bottomRight: Radius.circular(37),
-                ),
-                child: Image.asset(
-                  AppAssets.onboarding,
-                  height: 480,
-                  width: double.infinity,
-                  fit: BoxFit.fill,
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 16, top: 32),
-                child: Text(
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          ClipRRect(
+            borderRadius: const BorderRadius.only(
+              bottomLeft: Radius.circular(37),
+              bottomRight: Radius.circular(37),
+            ),
+            child: Image.asset(
+              AppAssets.onboarding,
+              height: MediaQuery.of(context).size.height / 2.1,
+              width: double.infinity,
+              fit: BoxFit.fill,
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical:32).copyWith(bottom: 16),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
                   'Winter\nVacation Trips',
                   style: AppStyles.s36w900,
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 16, top: 12),
-                child: Text(
+                const SizedBox(height: 12),
+                Text(
                   '''Enjoy your winter vacations with warmth\nand amazing sightseeing on the mountains.\nEnjoy the best experience with us!''',
                   style: AppStyles.s16w400.copyWith(height: 2),
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 17, top: 40),
-                child: _elevatedButton(context),
-              ),
-            ],
+                const SizedBox(height: 40),
+                _elevatedButton(context),
+              ],
+            ),
           ),
-        ),
+        ],
       ),
     );
   }
 
   ElevatedButton _elevatedButton(context) {
     return ElevatedButton(
-      style: ButtonStyle(
-        backgroundColor: MaterialStateProperty.all(
-          AppColors.primaryColor,
-        ),
-        maximumSize: MaterialStateProperty.all(
-          const Size.fromWidth(178),
-        ),
-        elevation: MaterialStateProperty.all(0),
-        shape: MaterialStateProperty.resolveWith(
-          (states) => RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(25),
-          ),
-        ),
-      ),
       onPressed: () {
         _navigateHome(context);
       },
@@ -90,11 +72,11 @@ class Onboarding extends StatelessWidget {
     );
   }
 
-  void _navigateHome(context) {
+  void _navigateHome(BuildContext context) {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => Home(),
+        builder: (context) => const Home(),
       ),
     );
   }
