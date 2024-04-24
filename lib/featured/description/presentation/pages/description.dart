@@ -1,59 +1,30 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:neo_tour/config/constants/app_assets.dart';
 import 'package:neo_tour/config/constants/app_styles.dart';
-import 'package:neo_tour/featured/description/domain/model/review.dart';
+import 'package:neo_tour/featured/description/presentation/bloc/review/review_bloc.dart';
+import 'package:neo_tour/featured/home/domain/model/recommended.dart';
 import 'package:neo_tour/featured/info/presentation/pages/info_bottom_sheet.dart';
 import 'package:neo_tour/featured/description/presentation/widgets/back_style.dart';
 import 'package:neo_tour/featured/info/presentation/widgets/elevated_button_style.dart';
 import 'package:neo_tour/featured/description/presentation/widgets/review_item.dart';
 
-class Description extends StatelessWidget {
-  Description({super.key});
+class Description extends StatefulWidget {
+  const Description({super.key, this.recommendedEntity});
 
-  final _reviews = [
-    ReviewEntity(
-      id: 0,
-      avatar: AppAssets.avatar,
-      name: 'Anonymous',
-      review:
-          'That was such a nice place. The most beautiful place I’ve ever seen. My advice to everyone not to forget to take warm coat',
-    ),
-    ReviewEntity(
-      id: 1,
-      avatar: AppAssets.avatar,
-      name: 'Anonymous',
-      review:
-          'That was such a nice place. The most beautiful place I’ve ever seen. My advice to everyone not to forget to take warm coat',
-    ),
-    ReviewEntity(
-      id: 2,
-      avatar: AppAssets.avatar,
-      name: 'Anonymous',
-      review:
-          'That was such a nice place. The most beautiful place I’ve ever seen. My advice to everyone not to forget to take warm coat',
-    ),
-    ReviewEntity(
-      id: 3,
-      avatar: AppAssets.avatar,
-      name: 'Anonymous',
-      review:
-          'That was such a nice place. The most beautiful place I’ve ever seen. My advice to everyone not to forget to take warm coat',
-    ),
-    ReviewEntity(
-      id: 4,
-      avatar: AppAssets.avatar,
-      name: 'Anonymous',
-      review:
-          'That was such a nice place. The most beautiful place I’ve ever seen. My advice to everyone not to forget to take warm coat',
-    ),
-    ReviewEntity(
-      id: 5,
-      avatar: AppAssets.avatar,
-      name: 'Anonymous',
-      review:
-          'That was such a nice place. The most beautiful place I’ve ever seen. My advice to everyone not to forget to take warm coat',
-    ),
-  ];
+  final RecommendedEntity? recommendedEntity;
+
+  @override
+  State<Description> createState() => _DescriptionState();
+}
+
+class _DescriptionState extends State<Description> {
+  @override
+  void initState() {
+    BlocProvider.of<ReviewBloc>(context)
+        .add(GetReviews(id: widget.recommendedEntity!.id));
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -131,7 +102,7 @@ class Description extends StatelessWidget {
                         ),
                       ),
                       const SizedBox(height: 16),
-                      _buildListView(),
+                      _buildBlocBuilder(),
                     ],
                   ),
                 ),
@@ -158,23 +129,52 @@ class Description extends StatelessWidget {
     );
   }
 
+  BlocBuilder<ReviewBloc, ReviewState> _buildBlocBuilder() {
+    return BlocBuilder<ReviewBloc, ReviewState>(builder: _buildBuilder);
+  }
+
+  Widget _buildBuilder(context, state) {
+    if (state is ReviewLoading) {
+      return const Center(
+        child: CircularProgressIndicator(),
+      );
+    }
+    if (state is ReviewError) {
+      return Center(
+        child: Text(
+          'Something went wrong',
+          style: AppStyles.s24w900,
+        ),
+      );
+    }
+    if (state is ReviewDone) {
+      return _buildListView(state);
+    } else {
+      return Text(
+        'Oops',
+        style: AppStyles.s24w900,
+      );
+    }
+  }
+
+  ListView _buildListView(ReviewDone state) {
+    return ListView.builder(
+      shrinkWrap: true,
+      physics: const NeverScrollableScrollPhysics(),
+      itemCount: state.review?.length,
+      itemBuilder: (context, index) {
+        return ReviewItem(review: state.review![index]);
+      },
+    );
+  }
+
   void _showBottomSheet(BuildContext context) {
     showModalBottomSheet(
       isScrollControlled: true,
       backgroundColor: Colors.white,
       context: context,
-      builder: (BuildContext context) {
+      builder: (context) {
         return const InfoBottomSheet();
-      },
-    );
-  }
-
-  ListView _buildListView() {
-    return ListView.builder(
-      shrinkWrap: true,
-      itemCount: _reviews.length,
-      itemBuilder: (context, index) {
-        return ReviewItem(review: _reviews.elementAt(index));
       },
     );
   }

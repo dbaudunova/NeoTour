@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:neo_tour/config/constants/app_styles.dart';
 import 'package:neo_tour/featured/description/domain/model/review.dart';
@@ -17,10 +18,16 @@ class ReviewItem extends StatelessWidget {
       children: [
         Row(
           children: [
-            Image.asset(review.avatar ?? ''),
+            SizedBox(
+              width: 24,
+              height: 24,
+              child: CachedNetworkImage(
+                imageUrl: review.imageUrl ?? '',
+              ),
+            ),
             const SizedBox(width: 8),
             Text(
-              review.name ?? '',
+              review.authorNickname ?? '',
               style: AppStyles.s16w400.copyWith(
                 fontWeight: FontWeight.bold,
               ),
@@ -30,7 +37,7 @@ class ReviewItem extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.only(top: 12, bottom: 24),
           child: Text(
-            review.review ?? '',
+            review.text ?? '',
             style: AppStyles.s16w400,
           ),
         )

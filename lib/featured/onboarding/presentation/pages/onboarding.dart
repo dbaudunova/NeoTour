@@ -10,41 +10,43 @@ class Onboarding extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          ClipRRect(
-            borderRadius: const BorderRadius.only(
-              bottomLeft: Radius.circular(37),
-              bottomRight: Radius.circular(37),
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            ClipRRect(
+              borderRadius: const BorderRadius.only(
+                bottomLeft: Radius.circular(37),
+                bottomRight: Radius.circular(37),
+              ),
+              child: Image.asset(
+                AppAssets.onboarding,
+                height: MediaQuery.of(context).size.height / 2.1,
+                width: double.infinity,
+                fit: BoxFit.fill,
+              ),
             ),
-            child: Image.asset(
-              AppAssets.onboarding,
-              height: MediaQuery.of(context).size.height / 2.1,
-              width: double.infinity,
-              fit: BoxFit.fill,
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical:32).copyWith(bottom: 16),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Winter\nVacation Trips',
+                    style: AppStyles.s36w900,
+                  ),
+                  const SizedBox(height: 12),
+                  Text(
+                    '''Enjoy your winter vacations with warmth\nand amazing sightseeing on the mountains.\nEnjoy the best experience with us!''',
+                    style: AppStyles.s16w400.copyWith(height: 2),
+                  ),
+                  const SizedBox(height: 40),
+                  _elevatedButton(context),
+                ],
+              ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical:32).copyWith(bottom: 16),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'Winter\nVacation Trips',
-                  style: AppStyles.s36w900,
-                ),
-                const SizedBox(height: 12),
-                Text(
-                  '''Enjoy your winter vacations with warmth\nand amazing sightseeing on the mountains.\nEnjoy the best experience with us!''',
-                  style: AppStyles.s16w400.copyWith(height: 2),
-                ),
-                const SizedBox(height: 40),
-                _elevatedButton(context),
-              ],
-            ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

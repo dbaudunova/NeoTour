@@ -1,6 +1,7 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:neo_tour/config/constants/app_styles.dart';
-import 'package:neo_tour/featured/home/domain/model/place.dart';
+import 'package:neo_tour/featured/home/domain/model/recommended.dart';
 
 class CategoryCardItem extends StatelessWidget {
   const CategoryCardItem({
@@ -12,7 +13,7 @@ class CategoryCardItem extends StatelessWidget {
     required this.onTap,
   });
 
-  final Place place;
+  final RecommendedEntity place;
   final double radius;
   final double textSize;
   final EdgeInsets contentPadding;
@@ -29,7 +30,7 @@ class CategoryCardItem extends StatelessWidget {
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(radius),
             image: DecorationImage(
-              image: AssetImage(place.imagePath ?? ''),
+              image: CachedNetworkImageProvider(place.imageUrl ?? ''),
               fit: BoxFit.fill,
             ),
           ),

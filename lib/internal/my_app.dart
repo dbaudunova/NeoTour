@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:neo_tour/config/theme/app_theme.dart';
-import 'package:neo_tour/featured/home/data/data_sources/remote/home_data_source.dart';
-import 'package:neo_tour/featured/home/data/repository/home_repository_impl.dart';
-import 'package:neo_tour/featured/home/domain/usecases/get_recommended_tours_use_case.dart';
+import 'package:neo_tour/featured/description/presentation/bloc/description/description_bloc.dart';
+import 'package:neo_tour/featured/description/presentation/bloc/review/review_bloc.dart';
+import 'package:neo_tour/featured/home/presentation/bloc/places/places_bloc.dart';
 import 'package:neo_tour/featured/home/presentation/bloc/recommended/recommended_bloc.dart';
 import 'package:neo_tour/featured/onboarding/presentation/pages/onboarding.dart';
+import 'package:neo_tour/internal/di.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({
@@ -17,13 +18,16 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider<RecommendedBloc>(
-          create: (context) => RecommendedBloc(
-            GetRecommendedToursUseCase(
-              HomeRepositoryImpl(
-                HomeDataSourceImpl(),
-              ),
-            ),
-          ),
+          create: (context) => sl<RecommendedBloc>(),
+        ),
+        BlocProvider(
+          create: (context) => sl<ReviewBloc>(),
+        ),
+        BlocProvider(
+          create: (context) => sl<PlacesBloc>(),
+        ),
+        BlocProvider(
+          create: (context) => sl<DescriptionBloc>(),
         ),
       ],
       child: MaterialApp(

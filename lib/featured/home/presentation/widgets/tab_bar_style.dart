@@ -6,14 +6,16 @@ import 'package:neo_tour/featured/home/presentation/widgets/circle_tab_indicator
 class TabBarStyle extends StatelessWidget {
   const TabBarStyle({
     super.key,
-    required List<Tab> tabs,
+    required List<Tab> tabs, required this.onTap,
   }) : _tabs = tabs;
 
   final List<Tab> _tabs;
+  final void Function(int)? onTap;
 
   @override
   Widget build(BuildContext context) {
     return TabBar(
+      onTap: onTap,
       tabAlignment: TabAlignment.start,
       indicatorSize: TabBarIndicatorSize.tab,
       overlayColor: MaterialStateProperty.all(Colors.transparent),

@@ -2,18 +2,20 @@ part of 'review_bloc.dart';
 
 abstract class ReviewState {
   final DioException? error;
+  final List<ReviewEntity>? review;
 
-  const ReviewState({this.error});
+  const ReviewState({this.error, this.review});
 }
 
-class RecommendedLoading extends ReviewState {
-  const RecommendedLoading();
+class ReviewLoading extends ReviewState {
+  const ReviewLoading();
 }
 
-class RecommendedDone extends ReviewState {
-  const RecommendedDone() : super();
+class ReviewDone extends ReviewState {
+  const ReviewDone(List<ReviewEntity> review)
+      : super(review: review);
 }
 
-class RecommendedError extends ReviewState {
-  const RecommendedError(DioException error) : super(error: error);
+class ReviewError extends ReviewState {
+  const ReviewError(DioException error) : super(error: error);
 }

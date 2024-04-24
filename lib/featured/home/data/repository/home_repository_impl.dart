@@ -12,4 +12,9 @@ class HomeRepositoryImpl implements HomeRepository {
   Future<List<RecommendedEntity>> getRecommendedTours() async {
     return await dataSource.getRecommendedTours();
   }
+
+  @override
+  Future<List<RecommendedEntity>> getPlacesTours(String name) async {
+    return await dataSource.getPlacesTours(name);
+  }
 }
