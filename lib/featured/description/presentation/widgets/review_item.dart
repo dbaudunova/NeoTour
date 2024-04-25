@@ -1,15 +1,15 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:neo_tour/config/constants/app_styles.dart';
-import 'package:neo_tour/featured/description/domain/model/review.dart';
+import 'package:neo_tour/featured/description/domain/model/tour.dart';
 
 class ReviewItem extends StatelessWidget {
   const ReviewItem({
     super.key,
-    required this.review,
+    required this.tourEntity,
   });
 
-  final ReviewEntity review;
+  final ReviewDtoList tourEntity;
 
   @override
   Widget build(BuildContext context) {
@@ -22,12 +22,12 @@ class ReviewItem extends StatelessWidget {
               width: 24,
               height: 24,
               child: CachedNetworkImage(
-                imageUrl: review.imageUrl ?? '',
+                imageUrl: tourEntity.imageUrl ?? '',
               ),
             ),
             const SizedBox(width: 8),
             Text(
-              review.authorNickname ?? '',
+              tourEntity.authorNickname ?? '',
               style: AppStyles.s16w400.copyWith(
                 fontWeight: FontWeight.bold,
               ),
@@ -37,7 +37,7 @@ class ReviewItem extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.only(top: 12, bottom: 24),
           child: Text(
-            review.text ?? '',
+            tourEntity.text ?? '',
             style: AppStyles.s16w400,
           ),
         )
@@ -45,3 +45,4 @@ class ReviewItem extends StatelessWidget {
     );
   }
 }
+

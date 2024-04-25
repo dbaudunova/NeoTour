@@ -12,6 +12,7 @@ class TourModel extends TourEntity {
     super.name,
     super.images,
     super.place,
+    super.reviewDtoList
   });
 
   factory TourModel.fromJson(Map<String, dynamic> json) =>
@@ -19,3 +20,4 @@ class TourModel extends TourEntity {
 
   Map<String, dynamic> toJson() => _$TourModelToJson(this);
 }
+
