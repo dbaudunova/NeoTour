@@ -129,7 +129,9 @@ class _DescriptionState extends State<Description> {
                             ),
                           ),
                           const SizedBox(height: 16),
-                          _buildListView(state),
+                          SizedBox(
+                              height: MediaQuery.of(context).size.height / 3,
+                              child: _buildListView(state)),
                         ],
                       ),
                     ),
